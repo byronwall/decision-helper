@@ -23,6 +23,7 @@ import {
 import { useMemo, useState } from "react";
 
 import { NumericInputWithBlur } from "./NumericInputWithBlur";
+import LoadFromLocalStorage from "./LoadFromLocalStorage";
 
 function App() {
   const [_decision, setDecision] = useState<Decision>(decisionData);
@@ -54,8 +55,6 @@ function App() {
 
     return newDecision;
   }, [_decision]);
-
-  console.log(decision);
 
   const columns = [
     { key: "desc", label: "Choices" },
@@ -110,6 +109,8 @@ function App() {
         <div className="flex gap-2">
           <Button onClick={handleAddChoice}>Add Choice</Button>
           <Button onClick={handleAddCriteria}>Add Criteria</Button>
+
+          <LoadFromLocalStorage decision={decision} onLoaded={setDecision} />
         </div>
         <div>
           <Table isStriped>
@@ -198,6 +199,25 @@ function App() {
                             >
                               Remove
                             </Button>
+                            {/* rename */}
+                            <Button
+                              size="sm"
+                              onClick={() => {
+                                const newName = prompt("New name:");
+                                if (!newName) return;
+
+                                const newChoices = [...decision.choices];
+                                newChoices[
+                                  decision.choices.indexOf(item)
+                                ].desc = newName;
+                                setDecision({
+                                  ...decision,
+                                  choices: newChoices,
+                                });
+                              }}
+                            >
+                              Rename
+                            </Button>
                           </div>
                         </TableCell>
                       );
@@ -222,5 +242,3 @@ function App() {
 }
 
 export default App;
-
-

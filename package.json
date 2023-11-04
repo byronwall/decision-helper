@@ -14,7 +14,8 @@
     "eslint-plugin-react": "^7.33.2",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-use": "^17.4.0"
   },
   "devDependencies": {
     "@dword-design/eslint-plugin-import-alias": "^4.0.8",
