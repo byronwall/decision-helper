@@ -8,10 +8,12 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@dword-design/import-alias/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:react/jsx-runtime",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
