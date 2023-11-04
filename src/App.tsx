@@ -1,15 +1,3 @@
-const decisionData: Decision = {
-  choices: [
-    { desc: "test", ranks: [1] },
-    { desc: "test2", ranks: [2] },
-    { desc: "test32", ranks: [2] },
-    { desc: "test4", ranks: [2] },
-    { desc: "test5", ranks: [2] },
-    { desc: "test6", ranks: [2] },
-    { desc: "test7", ranks: [2] },
-  ],
-  criteria: [{ desc: "test", weight: 1 }],
-};
 import {
   Button,
   TableHeader,
@@ -24,9 +12,10 @@ import { useMemo, useState } from "react";
 
 import { NumericInputWithBlur } from "./NumericInputWithBlur";
 import LoadFromLocalStorage from "./LoadFromLocalStorage";
+import { houseData, jobData } from "./sample_data";
 
 function App() {
-  const [_decision, setDecision] = useState<Decision>(decisionData);
+  const [_decision, setDecision] = useState<Decision>(houseData);
 
   // const compute totals on decisions
 
@@ -106,6 +95,23 @@ function App() {
           Use this tool to help make a decision. Add your choices, criteria,
           weights, and ranks to see how things stack up!
         </p>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => {
+              setDecision(houseData);
+            }}
+          >
+            Load House Example
+          </Button>
+
+          <Button
+            onClick={() => {
+              setDecision(jobData);
+            }}
+          >
+            Load Job Example
+          </Button>
+        </div>
         <div className="flex gap-2">
           <Button onClick={handleAddChoice}>Add Choice</Button>
           <Button onClick={handleAddCriteria}>Add Criteria</Button>
