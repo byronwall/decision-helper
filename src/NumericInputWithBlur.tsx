@@ -47,7 +47,7 @@ export function NumericInputWithBlur(props: {
       onChange={handleChange}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      className="w-full h-full"
+      className="w-full h-full min-h-[32px] border border-gray-300 rounded-md px-2 text-right text-sm"
       onClick={handleClick}
     />
   );

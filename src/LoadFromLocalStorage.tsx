@@ -49,27 +49,33 @@ export default function LoadFromLocalStorage({ decision, onLoaded }: Props) {
     setValue([...value, newDecision]);
   };
 
+  const hasSaved = value.length > 0;
+
   return (
     <>
       <Button onClick={handleNewItemSave}>Save to local storage</Button>
-      <Dropdown>
-        <DropdownTrigger>
-          <Button variant="bordered">Load saved item</Button>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">
-          {value.map((d, idx) => (
-            <DropdownItem
-              key={idx}
-              onClick={() => {
-                onLoaded(d.decision);
-              }}
-            >
-              {d.name}
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown>
-      <Button onClick={() => remove()}>Clear local storage</Button>
+      {hasSaved && (
+        <>
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant="bordered">Load saved item</Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions">
+              {value.map((d, idx) => (
+                <DropdownItem
+                  key={idx}
+                  onClick={() => {
+                    onLoaded(d.decision);
+                  }}
+                >
+                  {d.name}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+          <Button onClick={() => remove()}>Clear local storage</Button>
+        </>
+      )}
     </>
   );
 }

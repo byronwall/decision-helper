@@ -100,6 +100,7 @@ function App() {
             onClick={() => {
               setDecision(houseData);
             }}
+            color="primary"
           >
             Load House Example
           </Button>
@@ -108,6 +109,7 @@ function App() {
             onClick={() => {
               setDecision(jobData);
             }}
+            color="warning"
           >
             Load Job Example
           </Button>
@@ -127,8 +129,8 @@ function App() {
                     column.key.replace("ranks[", "").replace("]", "")
                   );
                   return (
-                    <TableColumn key={column.key} className="p-2">
-                      <div className="flex flex-col gap-1">
+                    <TableColumn key={column.key} className="p-4 m-2">
+                      <div className="flex flex-col gap-1 items-center">
                         <div>{column.label}</div>
                         <div className="w-20 h-6">
                           <NumericInputWithBlur
@@ -165,20 +167,22 @@ function App() {
                       const rank = item.ranks[idx];
                       return (
                         <TableCell key={key}>
-                          <div className="w-20">
-                            <NumericInputWithBlur
-                              value={rank}
-                              onChange={(value) => {
-                                const newChoices = [...decision.choices];
-                                newChoices[
-                                  decision.choices.indexOf(item)
-                                ].ranks[idx] = value;
-                                setDecision({
-                                  ...decision,
-                                  choices: newChoices,
-                                });
-                              }}
-                            />
+                          <div className="flex flex-col items-center">
+                            <div className="w-20 ">
+                              <NumericInputWithBlur
+                                value={rank}
+                                onChange={(value) => {
+                                  const newChoices = [...decision.choices];
+                                  newChoices[
+                                    decision.choices.indexOf(item)
+                                  ].ranks[idx] = value;
+                                  setDecision({
+                                    ...decision,
+                                    choices: newChoices,
+                                  });
+                                }}
+                              />
+                            </div>
                           </div>
                         </TableCell>
                       );
