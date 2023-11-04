@@ -234,7 +234,21 @@ function App() {
                     }
 
                     if (key === "total") {
-                      return <TableCell key="total">{item.total}</TableCell>;
+                      const isMax = decision.choices.every(
+                        (c) => c.total <= item.total
+                      );
+
+                      return (
+                        <TableCell
+                          key="total"
+                          className={
+                            "text-center " +
+                            (isMax ? "text-green-900 font-bold text-lg" : "")
+                          }
+                        >
+                          {item.total}
+                        </TableCell>
+                      );
                     }
 
                     return (
